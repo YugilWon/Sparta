@@ -4,13 +4,27 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link
-      rel="stylesheet"
-      href="{{ url_for('static', filename='style.css') }}"
-    />
-    <script defer src="{{ url_for('static', filename='script.js') }}"></script>
+    <link rel="stylesheet" href="static/style.css" />
+    <script defer src="static/script.js"></script>
 
-    <title>Document</title>
+    <title>Movie DataBase</title>
   </head>
-  <body></body>
+  <body>
+    <h1 class="title">Chosen Won</h1>
+    <header>
+      <h2 class="Main">골라봐</h2>
+    </header>
+    <form class="searchbar" onsubmit="handleSearch(event)">
+      <label>영화 검색 : </label>
+      <input
+        type="text"
+        id="search-input"
+        placeholder="영화 제목을 검색해 보세요"
+      />
+      <button type="submit" id="search-button">검색</button>
+    </form>
+    <section class="card-list"></section>
+    <div id="cards-box" class="cards-box"></div>
+    <div id="post-box"></div>
+  </body>
 </html>
