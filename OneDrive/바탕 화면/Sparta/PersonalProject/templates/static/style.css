@@ -1,9 +1,29 @@
+.title {
+  color: white;
+  font-family: "Nanum Pen Script", cursive;
+  background: #000000; /* fallback for old browsers */
+  font-size: x-large;
+  margin: 0px;
+}
+.subtitle {
+  float: right;
+  margin-right: 40px;
+  font-family: "Nanum Pen Script", cursive;
+}
+.Main {
+  color: white;
+  font-size: xxx-large;
+  display: flex;
+  justify-content: center;
+  font-family: "Nanum Pen Script", cursive;
+}
 .searchbar {
   width: 100%;
   display: flex;
   justify-content: center;
   padding: 20px 0;
   border-bottom: 1px solid black;
+  background: #000000; /* fallback for old browsers */
 }
 
 .searchbar label {
@@ -14,6 +34,7 @@
   margin-left: 20px;
   min-width: 200px;
   padding: 5px 10px;
+  border-radius: 15px;
 }
 
 .searchbar button {
@@ -21,18 +42,9 @@
   padding: 5px;
 }
 
-.Main {
-  font-size: xxx-large;
-  display: flex;
-  justify-content: center;
-}
-
-.title {
-  font-size: x-large;
-}
-
 header {
-  background-color: #ffe194;
+  background: #000000;
+
   display: flex;
   justify-content: center;
   align-items: center;
@@ -45,19 +57,42 @@ header {
   justify-content: center;
 }
 
-/* .cards-box {
-  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.12), 0 3px 6px rgba(0, 0, 0, 0.24);
-  margin: 20px;
+.cards-box {
+  background: #101111;
+  color: white;
   padding: 20px;
-  width: 300px;
+  width: flex;
   justify-self: center;
-  background-color: bisque;
-  border-radius: 10px;
+  /* background-color: bisque; */
   cursor: pointer;
   user-select: none;
-} */
+}
 
-.card-box img {
-  width: 100%;
+.card-body {
+  width: 70%;
+}
+
+.cards-box img {
+  width: 70%;
   border-radius: 10px;
+}
+
+#search-button {
+  background-color: #ffffff;
+  color: #d4dfe6;
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  /* 백그라운드로 안넣고 직접 html에서 img=src로 넣어주면 크기가 너무 커지는 오류 발생 */
+  background-image: url("search-icon.png");
+  background-size: cover;
+}
+
+.image {
+  position: absolute;
+  border-radius: 50%;
+  top: 35px;
+  right: 8px;
+  width: 200px;
+  height: 150px;
 }

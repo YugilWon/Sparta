@@ -6,25 +6,38 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="static/style.css" />
     <script defer src="static/script.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Nanum+Pen+Script&display=swap"
+      rel="stylesheet"
+    />
 
     <title>Movie DataBase</title>
   </head>
   <body>
-    <h1 class="title">Chosen Won</h1>
+    <h1 class="title">
+      Chosen Won <span class="subtitle">Cochelin3Star</span>
+    </h1>
     <header>
-      <h2 class="Main">골라봐</h2>
+      <h2 class="Main">
+        Movie Database<img src="static/cheulin.jpeg" class="image" />
+      </h2>
     </header>
     <form class="searchbar" onsubmit="handleSearch(event)">
-      <label>영화 검색 : </label>
-      <input
-        type="text"
-        id="search-input"
-        placeholder="영화 제목을 검색해 보세요"
-      />
-      <button type="submit" id="search-button">검색</button>
+      <label>
+        <input
+          type="text"
+          id="search-input"
+          placeholder="영화 제목을 검색해 보세요"
+          autofocus
+        />
+      </label>
+      <button type="submit" id="search-button"></button>
     </form>
-    <section class="card-list"></section>
-    <div id="cards-box" class="cards-box"></div>
-    <div id="post-box"></div>
+    <section class="card-list">
+      <div id="cards-box" class="cards-box"></div>
+      <div id="post-box"></div>
+    </section>
   </body>
 </html>

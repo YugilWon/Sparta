@@ -6,6 +6,7 @@ const options = {
       "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIyZmQ2OTNjYzEwNjdhNGI1NzcxYzJjOGI0YTJlNzJjOCIsInN1YiI6IjY0NzA4ZWExYzVhZGE1MDBmYjcyYTE1OSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.jmSIWUTekJ4ECS8onLQDDKlfcYm6kDJbtxgwVEsrAZA",
   },
 };
+
 //DOM 제어 이벤트리스너 사용1. 모든 컨텐츠들이 불러져왔을 때 listing 함수 실행.
 document.addEventListener("DOMContentLoaded", function () {
   listing();
@@ -23,14 +24,13 @@ function listing() {
   )
     .then(function (response) {
       if (response.ok) {
-        //JSON 문법을 사용하지 않기 위해 응답 데이터를 text 형식으로 변경
-        return response.text();
+        return response.json();
       } else {
         throw new Error("Not Loaded.");
       }
     })
     .then(function (data) {
-      let movies = JSON.parse(data).results;
+      let movies = data.results;
       //배열을 복사한 이유 : 기존의 cards들에 영향을 주지 않기위해서
       let allMovies = [...movies];
 
@@ -40,6 +40,7 @@ function listing() {
       //클릭 이벤트 함수
       searchButton.addEventListener("click", function () {
         performSearch(movies, searchInput.value);
+        // location.reload(); 새로고침효과 보완 필요
       });
 
       //키 입력 이벤트 함수
@@ -56,8 +57,8 @@ function displayMovies(movies) {
   let cardsBox = document.getElementById("cards-box");
   cardsBox.innerHTML = "";
 
-  //배열 메소드2 forEach
-  movies.forEach(function (movie) {
+  //배열 메소드2 forEach, 화살표 함수 사용
+  movies.forEach((movie) => {
     let id = movie.id;
     let title = movie.title;
     let image = movie.poster_path;
@@ -98,6 +99,7 @@ function performSearch(movies, Search) {
     movie.title.toLowerCase().includes(Search.toLowerCase())
   );
   displayMovies(filteredMovies);
+  // window.location.reload(); 리로드효과 어캐줄지 찾는 중
 }
 
 //검색이벤트 핸들 함수
