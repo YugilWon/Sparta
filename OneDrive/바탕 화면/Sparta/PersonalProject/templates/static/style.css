@@ -55,9 +55,6 @@ header {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   justify-content: center;
-}
-
-.cards-box {
   background: #101111;
   color: white;
   padding: 20px;
@@ -83,7 +80,6 @@ header {
   border-radius: 50%;
   width: 50px;
   height: 50px;
-  /* 백그라운드로 안넣고 직접 html에서 img=src로 넣어주면 크기가 너무 커지는 오류 발생 */
   background-image: url("search-icon.png");
   background-size: cover;
 }
@@ -95,4 +91,14 @@ header {
   right: 8px;
   width: 200px;
   height: 150px;
+}
+
+#loading {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100px;
+  font-size: 16px;
+  font-weight: bold;
+  color: white;
 }

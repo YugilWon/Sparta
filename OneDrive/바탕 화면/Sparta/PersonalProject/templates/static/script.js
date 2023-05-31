@@ -93,13 +93,24 @@ function displayMovies(movies) {
 }
 
 function performSearch(movies, Search) {
+  let loading = document.getElementById("loading");
+  loading.style.display = "block";
+
+  let searchResults = document.getElementById("searchResults");
+
   //배열 메소드1 filter, 화살표 함수 사용, toLowerCase는 대소문자 구분없이 입력받기 위해서 사용
   //검색어에 따라서 필터링된 movie배열을 frlteredMovies라는 새로운 배열에 저장
   let filteredMovies = movies.filter((movie) =>
     movie.title.toLowerCase().includes(Search.toLowerCase())
   );
-  displayMovies(filteredMovies);
-  // window.location.reload(); 리로드효과 어캐줄지 찾는 중
+
+  // window.location.reload(); 검색효과 어캐줄지 찾는 중
+  setTimeout(function () {
+    displayMovies(filteredMovies);
+    loading.style.display = "none";
+
+    searchResults.style.display = "block";
+  }, 500);
 }
 
 //검색이벤트 핸들 함수
@@ -107,7 +118,7 @@ function handleSearch(event) {
   //(이벤트)새로고침 방지
   event.preventDefault();
   let searchInput = document.getElementById("search-input");
-  //실수로 스페이스바 입력 할 수도 있으니 trim으로 공백 제거 후 값 가져오기
+  //실수로 스페이스바 입력 할 수도 있으니 trim으로 공백 제거 후 값 가져오기 근데 동작 안함
   let Search = searchInput.value.trim();
   if (Search !== "") {
     performSearch(movies, Search);
