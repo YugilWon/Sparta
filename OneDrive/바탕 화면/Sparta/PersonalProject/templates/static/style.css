@@ -1,7 +1,7 @@
 .title {
   color: white;
   font-family: "Nanum Pen Script", cursive;
-  background: #000000; /* fallback for old browsers */
+  background: #000000;
   font-size: x-large;
   margin: 0px;
 }
@@ -23,7 +23,7 @@
   justify-content: center;
   padding: 20px 0;
   border-bottom: 1px solid black;
-  background: #000000; /* fallback for old browsers */
+  background: #000000;
 }
 
 .searchbar label {
@@ -60,7 +60,6 @@ header {
   padding: 20px;
   width: flex;
   justify-self: center;
-  /* background-color: bisque; */
   cursor: pointer;
   user-select: none;
 }

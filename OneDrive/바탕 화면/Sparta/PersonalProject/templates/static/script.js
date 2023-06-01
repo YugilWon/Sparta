@@ -13,11 +13,6 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 function listing() {
-  //cardsBox에 cards-box ID값을 기준으로 요소 선택 DOM제어 api 사용 2
-  let cardsBox = document.getElementById("cards-box");
-  // //cardsBox에 리스팅 된 새로운 card들이 들어오기 전에 초기화
-  // cardsBox.innerHTML = "";
-
   fetch(
     "https://api.themoviedb.org/3/movie/top_rated?language=en-US&page=1",
     options
@@ -31,25 +26,22 @@ function listing() {
     })
     .then(function (data) {
       let movies = data.results;
-      //배열을 복사한 이유 : 기존의 cards들에 영향을 주지 않기위해서
-      let allMovies = [...movies];
 
       let searchButton = document.getElementById("search-button");
       let searchInput = document.getElementById("search-input");
 
-      //클릭 이벤트 함수
+      //클릭 이벤트 함수 실수로 스페이스바 누르거나 공백값 들어갔을경우 제거하기위해 trim
       searchButton.addEventListener("click", function () {
-        performSearch(movies, searchInput.value);
-        // location.reload(); 새로고침효과 보완 필요
+        performSearch(movies, searchInput.value.trim());
       });
 
       //키 입력 이벤트 함수
       searchInput.addEventListener("keypress", function (event) {
         if (event.key === "Enter") {
-          performSearch(movies, searchInput.value);
+          performSearch(movies, searchInput.value.trim());
         }
       });
-      displayMovies(allMovies);
+      displayMovies(movies);
     });
 }
 
@@ -73,7 +65,6 @@ function displayMovies(movies) {
         <div class="card h-100"> 
         <img src="https://image.tmdb.org/t/p/w500${image}"
          class="card-img-top"> 
-
           <div class="card-body"> 
             ${title}<h5 class="card-title> 
         </h5> 
@@ -96,31 +87,26 @@ function performSearch(movies, Search) {
   let loading = document.getElementById("loading");
   loading.style.display = "block";
 
-  let searchResults = document.getElementById("searchResults");
-
   //배열 메소드1 filter, 화살표 함수 사용, toLowerCase는 대소문자 구분없이 입력받기 위해서 사용
   //검색어에 따라서 필터링된 movie배열을 frlteredMovies라는 새로운 배열에 저장
   let filteredMovies = movies.filter((movie) =>
     movie.title.toLowerCase().includes(Search.toLowerCase())
   );
-
-  // window.location.reload(); 검색효과 어캐줄지 찾는 중
   setTimeout(function () {
     displayMovies(filteredMovies);
     loading.style.display = "none";
-
-    searchResults.style.display = "block";
   }, 500);
 }
 
 //검색이벤트 핸들 함수
 function handleSearch(event) {
-  //(이벤트)새로고침 방지
+  //(이벤트)새로고침 방지 안해주면 0.1초 필터링 값 보여주고 초기화 됨
   event.preventDefault();
   let searchInput = document.getElementById("search-input");
-  //실수로 스페이스바 입력 할 수도 있으니 trim으로 공백 제거 후 값 가져오기 근데 동작 안함
   let Search = searchInput.value.trim();
   if (Search !== "") {
     performSearch(movies, Search);
+  } else {
+    alert("검색어를 입력해주세요");
   }
 }
