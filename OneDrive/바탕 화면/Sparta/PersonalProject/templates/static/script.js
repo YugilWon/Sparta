@@ -32,13 +32,17 @@ function listing() {
 
       //클릭 이벤트 함수 실수로 스페이스바 누르거나 공백값 들어갔을경우 제거하기위해 trim
       searchButton.addEventListener("click", function () {
-        performSearch(movies, searchInput.value.trim());
+        handleSearch(movies, event);
+        // performSearch(movies, searchInput.value.trim());
+        // 원래 이렇게 여기서 동작했었는데 handleSearch에서 동작하도록 변경
       });
 
       //키 입력 이벤트 함수
       searchInput.addEventListener("keypress", function (event) {
         if (event.key === "Enter") {
-          performSearch(movies, searchInput.value.trim());
+          handleSearch(movies, event);
+          // performSearch(movies, searchInput.value.trim());
+          // 원래 이렇게 여기서 동작했었는데 handleSearch에서 동작하도록 변경
         }
       });
       displayMovies(movies);
@@ -98,9 +102,8 @@ function performSearch(movies, Search) {
   }, 500);
 }
 
-//검색이벤트 핸들 함수
-function handleSearch(event) {
-  //(이벤트)새로고침 방지 안해주면 0.1초 필터링 값 보여주고 초기화 됨
+//검색이벤트 핸들 함수 여기서 movies를 못받아왔어서 매개변수로 받아옴
+function handleSearch(movies, event) {
   event.preventDefault();
   let searchInput = document.getElementById("search-input");
   let Search = searchInput.value.trim();
